@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Задача</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 520px;
+            margin: 60px auto;
+            background-color: #fff;
+            padding: 30px 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h2 {
+            color: #343a40;
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .action-button {
+            padding: 12px 28px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+            color: white;
+        }
+
+        .action-button:active {
+            transform: scale(0.97);
+        }
+
+        .edit {
+            background-color: #17a2b8;
+        }
+
+        .edit:hover {
+            background-color: #138496;
+        }
+
+        .delete {
+            background-color: #dc3545;
+        }
+
+        .delete:hover {
+            background-color: #c82333;
+        }
+
+        .back {
+            background-color: #6c757d;
+        }
+
+        .back:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2 th:text="${task.name}">Название задачи</h2>
+
+    <div class="button-group">
+        <form th:method="get" th:action="@{/listify/{id}/update(id=${task.id})}">
+            <button type="submit" class="action-button edit">Изменить</button>
+        </form>
+
+        <form th:method="get" th:action="@{/listify/{id}/delete(id=${task.id})}">
+            <button type="submit" class="action-button delete">Удалить</button>
+        </form>
+
+        <form th:method="get" th:action="@{/listify/list-task}">
+            <button type="submit" class="action-button back">Назад</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

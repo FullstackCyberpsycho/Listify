@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Список задач</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef2f3;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .task {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .task-number {
+            font-weight: bold;
+            margin-right: 10px;
+            color: #555;
+        }
+
+        .task-name {
+            flex-grow: 1;
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .task-name:hover {
+            text-decoration: underline;
+        }
+
+        .delete-link {
+            color: red;
+            text-decoration: none;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .delete-link:hover {
+            color: darkred;
+        }
+
+        .back-button {
+            display: block;
+            margin-top: 20px;
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            border-radius: 5px;
+            font-weight: bold;
+            text-decoration: none;
+            width: fit-content;
+        }
+
+        .back-button:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Список задач</h2>
+
+    <div th:each="task, stat : ${tasks}" class="task">
+        <span class="task-number" th:text="${stat.count} + '.'"></span>
+        <a th:href="@{/listify/{id}(id=${task.id})}" class="task-name" th:text="${task.name}"></a>
+        <a th:href="@{/listify/{id}/delete(id=${task.id})}" class="delete-link">(X)</a>
+    </div>
+
+    <a th:href="@{/listify}" class="back-button">Назад в меню</a>
+</div>
+</body>
+</html>

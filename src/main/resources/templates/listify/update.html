@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Обновить задачу</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            padding: 30px;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            max-width: 500px;
+            margin: auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        .error {
+            color: red;
+            font-size: 0.9em;
+            margin-top: -10px;
+            margin-bottom: 20px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .buttons .btn {
+            min-width: 140px;
+            padding: 14px 0;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.25s ease;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .save-btn {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .save-btn:hover {
+            background-color: #218838;
+        }
+
+        .back-btn {
+            background-color: #6c757d;
+            color: white;
+        }
+
+        .back-btn:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Редактирование задачи</h2>
+
+    <form th:action="@{/listify/{id}/update(id=${task.id})}" th:object="${task}" th:method="put">
+        <label for="name">Название задачи:</label>
+        <input type="text" id="name" th:field="*{name}" placeholder="Введите название задачи" />
+        <div class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Ошибка</div>
+
+        <div class="buttons">
+            <input type="submit" value="Сохранить" class="btn save-btn" />
+            <a th:href="@{/listify/{id}(id=${task.id})}" class="btn back-btn">Назад</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

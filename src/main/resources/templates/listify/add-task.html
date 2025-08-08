@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление задачи</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 520px;
+            margin: 60px auto;
+            background-color: #ffffff;
+            padding: 30px 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #343a40;
+            margin-bottom: 30px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+            color: #495057;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        input[type="text"]:focus {
+            border-color: #80bdff;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+            outline: none;
+        }
+
+        .error {
+            color: #dc3545;
+            margin-top: 6px;
+            font-size: 14px;
+        }
+
+        .submit-button {
+            width: 100%;
+            background-color: #28a745;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        .submit-button:hover {
+            background-color: #218838;
+        }
+
+        .submit-button:active {
+            transform: scale(0.97);
+        }
+
+        .back-form {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .back-button {
+            padding: 10px 24px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 15px;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+
+        .back-button:active {
+            transform: scale(0.97);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h2>Добавить новую задачу</h2>
+
+    <form th:action="@{/listify}" th:object="${task}" th:method="post">
+        <label for="name">Название задачи:</label>
+        <input type="text" id="name" th:field="*{name}">
+
+        <div class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Ошибка</div>
+
+        <button type="submit" class="submit-button">Добавить</button>
+    </form>
+
+    <form th:method="get" th:action="@{/listify}" class="back-form">
+        <button type="submit" class="back-button">Назад</button>
+    </form>
+
+</div>
+
+</body>
+</html>

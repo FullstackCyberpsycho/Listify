@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Удаление задачи</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 420px;
+            margin: 60px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #dc3545;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        .task-name {
+            font-weight: bold;
+            color: #333;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .delete-button, .back-button {
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        .delete-button {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .delete-button:hover {
+            background-color: #c82333;
+        }
+
+        .delete-button:active {
+            transform: scale(0.97);
+        }
+
+        .back-button {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+
+        .back-button:active {
+            transform: scale(0.97);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Удаление задачи</h2>
+
+    <p>Вы точно хотите удалить задачу:</p>
+    <p class="task-name" th:text="${task.name}">[название задачи]</p>
+
+    <div class="buttons">
+        <form th:method="delete" th:action="@{/listify/{id}/delete(id=${task.id})}">
+            <button type="submit" class="delete-button">Удалить</button>
+        </form>
+
+        <form th:method="get" th:action="@{/listify/list-task}">
+            <button type="submit" class="back-button">Назад</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
