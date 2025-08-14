@@ -31,6 +31,7 @@ public class TaskServices {
     @Cacheable("tasks")
     public List<Task> findAll() {
         return repository.findAll();
+        //return repository.findAllByUserUsername(username);
     }
 
     //@Cacheable(value = "task", key = "#id")

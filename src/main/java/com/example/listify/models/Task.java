@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 //import lombok.Data;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,6 +14,7 @@ import java.io.Serializable;
 
 @Entity
 @Getter @Setter
+@AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "tasks")
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -25,4 +27,8 @@ public class Task implements Serializable {
 
     @NotBlank(message = "Название задачи не должно быть пустым")
     private String name;
+
+    /*@ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;*/
 }

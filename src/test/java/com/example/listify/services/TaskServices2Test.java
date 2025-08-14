@@ -12,16 +12,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class TaskServicesTest {
+public class TaskServices2Test {
     @Mock
     private ListifyRepository repository;
 
     @InjectMocks
-    private TaskServices services;
+    private TaskServices2 services;
 
     @BeforeEach
     void setUp() {
@@ -61,5 +62,4 @@ public class TaskServicesTest {
 
         assertEquals("Task", res.getName());
     }
-
 }
